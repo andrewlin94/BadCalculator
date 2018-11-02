@@ -1,2 +1,1 @@
-"# Calculator" 
-"# Calculator" 
+Bad Calculator as practice with C++.
