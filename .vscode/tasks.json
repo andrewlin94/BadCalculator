@@ -10,7 +10,7 @@
             "args": [
                 "-g",
                 "-o",
-                "Calculator",
+                "Calculator.out",
                 "Calculator.cpp",
                 "-std=c++11",
             ],
