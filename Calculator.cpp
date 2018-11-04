@@ -1,15 +1,24 @@
 /*  Andrew Lin      2018/09/10
     Simple Command Line Calculator
-    Only has +, -, *, /, and ^, in that order.
-    Meant as a practice
 */
 #include "Calculator.h"
 
 /*          Operations          */
+
+/*  Adding two numbers
+    @parem      a First number of the sum
+    @parem      b Second number of the sum
+    @return     Sum of a and b
+*/
 double addition(double a, double b) {
     return a+b;
 }
 
+/*  Subtracting second number from first number 
+    @parem      a Number to be subtracted from
+    @parem      b Number to subtract
+    @return     a-b
+*/
 double subtraction(double a, double b) {
     return a-b;
 }
@@ -20,10 +29,9 @@ double multiplication(double a, double b) {
 
 double division(double a, double b) {
     //  Make sure it is not division by 0
-    // if (b == 0.0) {
-    //     cout << "Division by 0! Error!\n";
-    //     return NULL;
-    // }
+    if (b == 0.0) {
+        cout << "Division by 0 detected!\n";
+    }
     return a/b;
 }
 
@@ -67,6 +75,9 @@ double root(double a, double b) {
 }
 
 double logarithm(double a, double b) {
+    if (a < 0 || b < 0) {
+        return nan("");
+    }
     return log10(a)/log10(b);
 }
 
@@ -160,16 +171,34 @@ double executeOperation(double operation, double firstNumber, double secondNumbe
     return result;
 }
 
+bool verifyString(string input) {
+    bool allDigits = 1;
+    int i = 0;
+    if (input[0] == char(45) && input.length() > 1) {
+        i = 1;
+    }
+    for (i; i < input.length(); ++i) {
+        allDigits &= isdigit(input[i]);
+    }
+    if (allDigits) {
+        return true;
+    }
+    return false;
+}
+
 // double inputPicker(string input, double prevResult) {
 //     if (input == "ans") {
 //         return prevResult;
-//     }
-//     bool allDigits = 1;
-//     for (char c:input) {
-//         allDigits &= isdigit(c);
-//     }
-//     if (allDigits) {
-//         return atof(input.c_str());
+//     }else if (input == "e") {
+//         return exp(1);
+//     }else if (input[0] == char(45)) {
+//         if (verifyString(input)) {
+//             return atof(input.c_str);
+//         }else {
+//             return 0;
+//         }
+//     }else {
+        
 //     }
 //     return 0;
 // }
@@ -183,26 +212,22 @@ int main() {
     double secondNumber;
     double prevResult = 0;
     bool startOver = 1;
+    bool validInput = false;
     while(startOver) {
         startOver = 0;
         //  Get first number
         cout << "Enter first number: \n";
         cin >> inputString;
+        startOver = 1;
         if (inputString == "ans") {
             firstNumber = prevResult;
         }else if (inputString == "e") {
             firstNumber = exp(1);
+        }else if (verifyString(inputString)) {
+            firstNumber = atof(inputString.c_str());
         }else {
-            bool allDigits = 1;
-            for (char c:inputString) {
-                allDigits &= isdigit(c);
-            }
-            if (allDigits) {
-                firstNumber = atof(inputString.c_str());
-            }else {
-                cout << "Input was not a number. Exiting...\n";
-                return -1;
-            }
+            cout << "Input was not a number. Exiting...\n";
+            return -1;
         }
         // cout << firstNumber << endl;
         // cout << "Your first number is " << firstNumber << "\n";
@@ -216,6 +241,10 @@ int main() {
         };
 
         //  Making sure operation is valid
+        if (operation < 0 || operation > 7.1) {
+            cout << "Invalid operation. Exiting...\n";
+            return -1;
+        }
         if (operation != (int)operation) {
             secondNumber = 0;
         }else {
@@ -226,12 +255,6 @@ int main() {
                 cout << "Input was not a number. Exiting...\n";
                 return -1;
             };
-
-            // Division by zero detection
-            if (operation == 4 && secondNumber == 0) {
-                cout << "Division by zero detected. Exiting... \n";
-                return -1;
-            }
         }
 
         //  Valid operation, compute the result

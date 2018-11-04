@@ -15,7 +15,7 @@ double exponential(double a, double b);
 double root(double a, double b);
 
 /*          Other functions useful for calculator           */
-// double inputPicker(string input, double prevResult);
+double inputPicker(string input, double prevResult);
 double absoluteValue (double a);
 void printOperations();
 double executeOperation(int operation, double firstNumber, double secondNumber);

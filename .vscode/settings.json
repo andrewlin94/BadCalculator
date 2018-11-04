@@ -4,6 +4,7 @@
         "iosfwd": "cpp",
         "ios": "cpp",
         "iomanip": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "cmath": "cpp"
     }
 }
