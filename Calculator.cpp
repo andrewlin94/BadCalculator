@@ -23,10 +23,18 @@ double subtraction(double a, double b) {
     return a-b;
 }
 
+/*  Multiply two numbers
+    @parem      a   First number of the multiplication
+    @parem      b   
+*/
 double multiplication(double a, double b) {
     return a*b;
 }
-
+/*  Divide a by b
+    @parem  a   The numerator
+    @parem  b   The denominator
+    @return a/b
+*/
 double division(double a, double b) {
     //  Make sure it is not division by 0
     if (b == 0.0) {
@@ -35,7 +43,11 @@ double division(double a, double b) {
     return a/b;
 }
 
-//  TODO: Make exponential work with decimals
+/*  Find a^b, or the a to the power of b
+    @parem  a       The base
+    @parem  b       The exponent
+    @result a^b     
+*/
 double exponential(double a, double b) {
     return pow(a, b);
     // double result = 1;
@@ -45,14 +57,17 @@ double exponential(double a, double b) {
     // return result;
 }
 
-/*  Find the b-th root of the a.
+/*  Find the b-th root of a. It is
+    now using the library function
+    instead of the fast-converging
+    algorithm.
+    Find the b-th root of the a.
     Uses the fast-converging algorithm
     Consult nth root algorithm on Wikipedia
     @parem  a       The number to find root from
     @parem  b       Which root of a to find
     @return result  The b-th root of a
 */
-//  TODO: Make root work with decimals
 double root(double a, double b) {
     return pow(a, 1.0/b);
     // double result = division(a,b);
@@ -74,6 +89,11 @@ double root(double a, double b) {
     // return result;
 }
 
+/*  Find the Log(a) with base b
+    @parem  a       Number to find the log of
+    @parem  b       Base of the log
+    @return result  Log(a) with base b
+*/
 double logarithm(double a, double b) {
     if (a < 0 || b < 0) {
         return nan("");
@@ -90,6 +110,11 @@ double absoluteValue (double a) {
     }
 }
 
+/*  Print out the functions implemented.
+    Sub-functions (i.e. 7.1) only requires 1 number.
+    @parem  NULL
+    @return NULL
+*/
 void printOperations() {
     cout << "Choose operation:\n";
     cout << left << setw(25) << "   Operation"          << left << setw(20) << " How the mode calculates"   << "\n";
@@ -106,6 +131,16 @@ void printOperations() {
     cout << left << setw(25) << "      7.1. Natural Log"<< left << setw(20) << " (ln of first)"             << "\n";
 }
 
+/*  Compute the operation and print result
+    @parem  operation       The operation to be done on the two numbers
+    @parem  firstNumber     The first number of the operation,
+                            details in operation functions
+    @parem  secondNumber    The second number of the operation,
+                            0 if operation is a sub-operation
+    @return result          The result of the operation. Used 
+                            to allow user to use the previous 
+                            result, similar to calculator
+*/
 double executeOperation(double operation, double firstNumber, double secondNumber) {
     double result;
     if (operation == (int)operation) {
@@ -171,15 +206,28 @@ double executeOperation(double operation, double firstNumber, double secondNumbe
     return result;
 }
 
+/*  Verify that a string consist of digits.
+    E.g. "12a" returns false, "-12" returns true
+    @parem  input   The string of the input.
+    @return         True if the string is a valid
+                    number if converted, false
+                    otherwise
+
+*/
 bool verifyString(string input) {
     bool allDigits = 1;
-    int i = 0;
+    int index = 0;
+    //  If first char of the string is a - (minus sign),
+    //  and the string is longer than 1, make 
+    //  the search after start at index 1.
     if (input[0] == char(45) && input.length() > 1) {
-        i = 1;
+        index = 1;
     }
-    for (i; i < input.length(); ++i) {
-        allDigits &= isdigit(input[i]);
+    //  Check whether all the chars in the string are digits
+    for (index; index < input.length(); ++index) {
+        allDigits &= isdigit(input[index]);
     }
+    //  Return true if the string only contains digits
     if (allDigits) {
         return true;
     }
@@ -205,7 +253,7 @@ bool verifyString(string input) {
 
 /*          Main function           */
 int main() {
-    //  Numbers
+    //  Variables
     string inputString;
     double firstNumber;
     double operation;
@@ -219,6 +267,10 @@ int main() {
         cout << "Enter first number: \n";
         cin >> inputString;
         startOver = 1;
+
+        //  Verify the input string
+        //  and assign the number
+        //  depending on the input
         if (inputString == "ans") {
             firstNumber = prevResult;
         }else if (inputString == "e") {
