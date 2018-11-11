@@ -144,7 +144,7 @@ void printOperations() {
 double executeOperation(double operation, double firstNumber, double secondNumber) {
     double result;
     if (operation == (int)operation) {
-        int op = operation;
+        int op = operation; // Convert double to int for switch statement
         switch(op) {
             case 1:
                 result = addition(firstNumber, secondNumber);
@@ -320,6 +320,7 @@ int main() {
             startOver = 1;
         }
         else {
+            cout << "Good bye\n";
             return 0;
         }
     }
