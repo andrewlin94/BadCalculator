@@ -4,11 +4,23 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build calculator",
+            "label": "Build Catch2",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "Test-main.cpp",
+                "-c",
+                "-o",
+                "Test-main.out",
+            ]
+        },
+        {
+            "label": "Build Calculator",
             "type": "shell",
             "command": "g++",
             "args": [
                 "-g",
+                "Operations.cpp",
                 "-o",
                 "Calculator.out",
                 "Calculator.cpp",
@@ -18,6 +30,24 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Test Add",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "Test-main.out",
+                "Operations.cpp",
+                "-std=c++11",
+                "-Wall",
+                "-I$(CATCH_SINGLE_INCLUDE)",
+                "-o",
+                "Tests-addition.out",
+                "Tests-addition.cpp",
+                "&&",
+                "Tests-addition.out",
+                "--success"
+            ],
         }
     ]
 }
