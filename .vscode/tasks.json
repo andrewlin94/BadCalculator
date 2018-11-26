@@ -15,7 +15,7 @@
             ]
         },
         {
-            "label": "Build Calculator",
+            "label": "Build & Run Calculator",
             "type": "shell",
             "command": "g++",
             "args": [
@@ -25,6 +25,8 @@
                 "Calculator.out",
                 "Calculator.cpp",
                 "-std=c++11",
+                "&&",
+                "Calculator.out"
             ],
             "group": {
                 "kind": "build",
@@ -42,10 +44,28 @@
                 "-Wall",
                 "-I$(CATCH_SINGLE_INCLUDE)",
                 "-o",
-                "Tests-addition.out",
-                "Tests-addition.cpp",
+                "Tests-Addition.out",
+                "Tests-Addition.cpp",
                 "&&",
-                "Tests-addition.out",
+                "Tests-Addition.out",
+                "--success"
+            ],
+        }
+        {
+            "label": "Test Sub",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "Test-main.out",
+                "Operations.cpp",
+                "-std=c++11",
+                "-Wall",
+                "-I$(CATCH_SINGLE_INCLUDE)",
+                "-o",
+                "Tests-Subtraction.out",
+                "Tests-Subtraction.cpp",
+                "&&",
+                "Tests-Subtraction.out",
                 "--success"
             ],
         }

@@ -51,8 +51,8 @@ void printOperations() {
 */
 double executeOperation(double operation, double firstNumber, double secondNumber) {
     double result;
-    if (operation == (int)operation) {
-        int op = operation;     // Convert double to int for switch statement
+    int op = operation;     // Convert double to int for switch statement
+    if (op == operation) {
         switch(op) {
             case 1:
                 result = addition(firstNumber, secondNumber);
