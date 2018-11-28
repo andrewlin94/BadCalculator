@@ -1,5 +1,5 @@
-#include <math.h>
 #include "catch.hpp"
+#include <math.h>
 
 /*          Operations          */
 double addition(double a, double b);

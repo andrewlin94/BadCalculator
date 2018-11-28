@@ -7,27 +7,55 @@
             "label": "Build Catch2",
             "type": "shell",
             "command": "g++",
-            "args": [
-                "Test-main.cpp",
-                "-c",
-                "-o",
-                "Test-main.out",
-            ]
+            "windows":{
+                "args": [
+                    "Test-main.cpp",
+                    "-c",
+                    "-o",
+                    "Test-main.out",
+                    "-std=c++11"
+                ]
+            },
+            "osx": {
+                "args": [
+                    "Test-main.cpp",
+                    "-c",
+                    "-o",
+                    "Test-main.o",
+                    "-std=c++11"
+                ]
+            }
+            
         },
         {
             "label": "Build & Run Calculator",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
+            "windows": {
+                "command": "g++",
+                "args": [
+               "-g",
                 "Operations.cpp",
+                "Calculator.cpp",
                 "-o",
                 "Calculator.out",
-                "Calculator.cpp",
                 "-std=c++11",
                 "&&",
                 "Calculator.out"
-            ],
+                ],
+            },
+            "osx": {
+                "command": "g++",
+                "args": [
+                    "-g",
+                    "Operations.cpp",
+                    "Calculator.cpp",
+                    "-o",
+                    "Calculator.o",
+                    "-std=c++11",
+                    "&&",
+                    "./Calculator.o"
+                ]
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -36,38 +64,73 @@
         {
             "label": "Test Add",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "Test-main.out",
-                "Operations.cpp",
-                "-std=c++11",
-                "-Wall",
-                "-I$(CATCH_SINGLE_INCLUDE)",
-                "-o",
-                "Tests-Addition.out",
-                "Tests-Addition.cpp",
-                "&&",
-                "Tests-Addition.out",
-                "--success"
-            ],
+            "windows": {
+                "command": "g++",
+                "args": [
+                    "Test-main.out",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "-I$(CATCH_SINGLE_INCLUDE)",
+                    "Tests-Addition.cpp",
+                    "-o",
+                    "Tests-Addition.out",
+                    "&&",
+                    "Tests-Addition.out",
+                    "--success"
+                ],
+            },
+            "osx": {
+                "command": "g++",
+                "args": [
+                    "./Test-main.o",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "Tests-Addition.cpp",
+                    "-o",
+                    "Tests-Addition.o",
+                    "&&",
+                    "./Tests-Addition.o",
+                    "--success"
+                ]
+            }
+            
         },
         {
             "label": "Test Sub",
             "type": "shell",
             "command": "g++",
-            "args": [
-                "Test-main.out",
-                "Operations.cpp",
-                "-std=c++11",
-                "-Wall",
-                "-I$(CATCH_SINGLE_INCLUDE)",
-                "-o",
-                "Tests-Subtraction.out",
-                "Tests-Subtraction.cpp",
-                "&&",
-                "Tests-Subtraction.out",
-                "--success"
-            ],
+            "windows": {
+                "args": [
+                    "Test-main.out",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "-I$(CATCH_SINGLE_INCLUDE)",
+                    "Tests-Subtraction.cpp",
+                    "-o",
+                    "Tests-Subtraction.out",
+                    "&&",
+                    "Tests-Subtraction.out",
+                    "--success"
+                ],
+            },
+            "osx": {
+                "args": [
+                    "./Test-main.o",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "Tests-Subtraction.cpp",
+                    "-o",
+                    "Tests-Subtraction.o",
+                    "&&",
+                    "./Tests-Subtraction.o",
+                    "--success"
+                ],
+            }
+            
         }
     ]
 }
