@@ -77,7 +77,7 @@
                     "Tests-Addition.out",
                     "&&",
                     "Tests-Addition.out",
-                    "--success"
+                    "-a"
                 ],
             },
             "osx": {
@@ -92,7 +92,7 @@
                     "Tests-Addition.o",
                     "&&",
                     "./Tests-Addition.o",
-                    "--success"
+                    "-a"
                 ]
             }
             
@@ -113,7 +113,7 @@
                     "Tests-Subtraction.out",
                     "&&",
                     "Tests-Subtraction.out",
-                    "--success"
+                    "-a"
                 ],
             },
             "osx": {
@@ -127,7 +127,42 @@
                     "Tests-Subtraction.o",
                     "&&",
                     "./Tests-Subtraction.o",
-                    "--success"
+                    "-a"
+                ],
+            }
+            
+        },
+        {
+            "label": "Test Multi",
+            "type": "shell",
+            "command": "g++",
+            "windows": {
+                "args": [
+                    "Test-main.out",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "-I$(CATCH_SINGLE_INCLUDE)",
+                    "Tests-Multiplication.cpp",
+                    "-o",
+                    "Tests-Multiplication.out",
+                    "&&",
+                    "Tests-Multiplication.out",
+                    "-a"
+                ],
+            },
+            "osx": {
+                "args": [
+                    "./Test-main.o",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "Tests-Multiplication.cpp",
+                    "-o",
+                    "Tests-Multiplication.o",
+                    "&&",
+                    "./Tests-Multiplication.o",
+                    "-a"
                 ],
             }
             
