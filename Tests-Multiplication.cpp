@@ -61,7 +61,7 @@ TEST_CASE("Multiplications are computed", "[multi]") {
 
     SECTION("Multiplication tests with negative numbers") {
         REQUIRE(multiplication(-1.0, -1.0) == 1.0);
-        REQUIRE(multiplication(-2.9, 101) == -292.9);
-        REQUIRE(multiplication(12321, -122.5) == -1509322.5);
+        REQUIRE(multiplication(-4239.0, 101.0) == -428139.0);
+        REQUIRE(multiplication(12321.0, -122.0) == -1503162.0);
     }
 }

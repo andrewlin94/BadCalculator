@@ -166,6 +166,41 @@
                 ],
             }
             
+        },
+        {
+            "label": "Test Div",
+            "type": "shell",
+            "command": "g++",
+            "windows": {
+                "args": [
+                    "Test-main.out",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "-I$(CATCH_SINGLE_INCLUDE)",
+                    "Tests-Division.cpp",
+                    "-o",
+                    "Tests-Division.out",
+                    "&&",
+                    "Tests-Division.out",
+                    "-a"
+                ],
+            },
+            "osx": {
+                "args": [
+                    "./Test-main.o",
+                    "Operations.cpp",
+                    "-std=c++11",
+                    "-Wall",
+                    "Tests-Division.cpp",
+                    "-o",
+                    "Tests-Division.o",
+                    "&&",
+                    "./Tests-Division.o",
+                    "-a"
+                ],
+            }
+            
         }
     ]
 }

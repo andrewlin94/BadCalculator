@@ -4,6 +4,6 @@
 TEST_CASE("Subtractions are computed", "[sub]") {
     REQUIRE(subtraction(1.0, 1.0) == 0.0);
     REQUIRE(subtraction(-1.0, -1.0) == 0.0);
-    REQUIRE(subtraction(-1.2, 4.7) == -5.9);
-    REQUIRE(subtraction(3.2, -9.3) == 12.5);
+    REQUIRE(subtraction(-1.0, 4.0) == -5.0);
+    REQUIRE(subtraction(3.0, -9.0) == 12.0);
 }
